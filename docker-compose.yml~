@@ -1,6 +1,20 @@
-postgresql:
-  image: jcalazan/postgresql
+postgresql2:
+  build: .
+  container_name: postgres_test1
+  # ports:
+  #   - "5432:5432"
+  # volumes:
+  #   - /srv/docker/postgresql:/var/lib/postgresql
+  expose:
+    - "5432"
+
+calling:
+  build: ./Caller
+  environment:
+    - DATABASE_HOST=postgresql2
+  #command: sudo apt-get install postgresql-client
+  command: docker inspect postgress | grep "\"IPAddress\"" | cut -d ':' -f 2| cut -d '"' -f 2
+  links: 
+    - 'postgresql2:'
   volumes:
-    - ~/.:/var/lib/postgresql
-  ports:
-    - "5432:5432"
+     - ./code:/code

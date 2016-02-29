@@ -1,0 +1,9 @@
+import psycopg2
+
+try:
+    conn = psycopg2.connect("dbname='adama_qa' user='adama' host='172.17.0.3'")
+    print "Work done"
+    
+
+except:
+    print "I am unable to connect to the database"

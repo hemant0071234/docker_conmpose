@@ -1,18 +1,14 @@
-postgresql1:
+postgresql:
   build: .
-  # ports:
-  #   - "5432:5432"
-  # volumes:
-  #   - /.:/.
+  container_name: postgres_test1
   expose:
     - "5432"
 
 calling:
-  image: ubuntu:14.04
+  build: ./Caller
   environment:
-    - DATABASE_HOST=postgresql1
-  command: sudo apt-get install postgresql-client
+    - DATABASE_HOST=postgresql
   links: 
-    - postgresql1
-  volumes_from:
-    - postgresql1
+    - 'postgresql:'
+  volumes:
+     - ./code:/code
