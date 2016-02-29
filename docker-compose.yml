@@ -1,14 +1,15 @@
-postgresql:
+postgresql2:
   build: .
-  container_name: postgres_test1
+  container_name: postgres_test2
   expose:
     - "5432"
 
-calling:
+calling1:
   build: ./Caller
   environment:
-    - DATABASE_HOST=postgresql
+    - DATABASE_HOST=postgresql2
+  command: docker inspect postgress | grep "\"IPAddress\"" | cut -d ':' -f 2| cut -d '"' -f 2
   links: 
-    - 'postgresql:'
+    - 'postgresql2:'
   volumes:
      - ./code:/code

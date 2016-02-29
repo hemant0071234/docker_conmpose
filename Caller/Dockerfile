@@ -15,7 +15,6 @@ RUN apt-get update && apt-get install -qy \
         libpq-dev \
         python-Psycopg2 \
         vim
+#RUN 
 
-RUN psql -h ${DB_HOST} -U postgres && pip install psycopg2
-
-ENTRYPOINT /bin/bash
+ENTRYPOINT psql -h ${DB_HOST} -U postgres && /bin/bash
