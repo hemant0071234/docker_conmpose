@@ -8,7 +8,7 @@ postgres:
 calling2:
   build: ./Caller
   links: 
-    - 'postgres:calling'
+    - 'postgres:calling2'
   volumes:
      - ./code:/code
 
