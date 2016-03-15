@@ -1,15 +1,16 @@
-postgresql2:
+postgresnew3:
   build: .
-  container_name: postgres_test2
   expose:
     - "5432"
+  volumes:
+    - /etc:/postgre/etc
 
-calling1:
+calling2:
   build: ./Caller
-  environment:
-    - DATABASE_HOST=postgresql2
-  command: docker inspect postgress | grep "\"IPAddress\"" | cut -d ':' -f 2| cut -d '"' -f 2
   links: 
-    - 'postgresql2:'
+    - 'postgresnew3:calling2'
   volumes:
      - ./code:/code
+
+  volumes_from:
+    - postgresnew3

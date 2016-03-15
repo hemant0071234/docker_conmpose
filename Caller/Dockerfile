@@ -15,6 +15,6 @@ RUN apt-get update && apt-get install -qy \
         libpq-dev \
         python-Psycopg2 \
         vim
-#RUN 
+        pip install docker-compose
 
-ENTRYPOINT psql -h ${DB_HOST} -U postgres && /bin/bash
+
